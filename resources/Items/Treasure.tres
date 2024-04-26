@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://7vxjfukqpb06"]
+
+[ext_resource type="Script" path="res://scripts/resource/item_resource.gd" id="1_2i1wu"]
+[ext_resource type="Texture2D" uid="uid://cqmkssusnm4nr" path="res://assets/tilesets/Player.png" id="2_wsbl6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rvax"]
+atlas = ExtResource("2_wsbl6")
+region = Rect2(90, 30, 15, 15)
+
+[resource]
+script = ExtResource("1_2i1wu")
+item_name = "Treasure"
+item_type = "item"
+item = 0
+amount = 1
+unlock_item = 0
+sprite = SubResource("AtlasTexture_3rvax")

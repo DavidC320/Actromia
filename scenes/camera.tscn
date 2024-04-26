@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://pqnm1t82a62f"]
+
+[ext_resource type="Script" path="res://scripts/camera.gd" id="1_d37b3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4hud"]
+size = Vector2(240, 165)
+
+[node name="Camera" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_d37b3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(120, 82.5)
+shape = SubResource("RectangleShape2D_c4hud")
+
+[node name="Limit" type="Marker2D" parent="."]
+position = Vector2(240, 165)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(4, 4)

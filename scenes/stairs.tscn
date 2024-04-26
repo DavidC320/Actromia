@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdge5ln3luabg"]
+
+[ext_resource type="Texture2D" uid="uid://br0k45v62jmbw" path="res://assets/tilesets/DungeonTiles.png" id="1_878is"]
+[ext_resource type="Script" path="res://scripts/stairs.gd" id="1_fk3ph"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmj5w"]
+atlas = ExtResource("1_878is")
+region = Rect2(135, 15, 15, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1ygx"]
+size = Vector2(15, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4sr3k"]
+size = Vector2(15, 15)
+
+[node name="Stairs" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_fk3ph")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_pmj5w")
+offset = Vector2(7.5, 7.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7.5, 7.5)
+shape = SubResource("RectangleShape2D_s1ygx")
+disabled = true
+
+[node name="EnterArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnterArea"]
+position = Vector2(7.5, 7.5)
+shape = SubResource("RectangleShape2D_4sr3k")
+
+[node name="TeleportMarker" type="Marker2D" parent="."]
+
+[connection signal="body_entered" from="EnterArea" to="." method="_on_enter_area_body_entered"]

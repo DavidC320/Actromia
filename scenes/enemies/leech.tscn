@@ -1,0 +1,132 @@
+[gd_scene load_steps=13 format=3 uid="uid://dnlq7rd2c4o33"]
+
+[ext_resource type="Script" path="res://scripts/Enemies/leech.gd" id="1_nf04y"]
+[ext_resource type="Texture2D" uid="uid://dy2gbh1jd8v8h" path="res://assets/tilesets/Monsters.png" id="2_ykubr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuk03"]
+atlas = ExtResource("2_ykubr")
+region = Rect2(30, 75, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfama"]
+atlas = ExtResource("2_ykubr")
+region = Rect2(45, 75, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5s1sf"]
+atlas = ExtResource("2_ykubr")
+region = Rect2(0, 75, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emkrw"]
+atlas = ExtResource("2_ykubr")
+region = Rect2(15, 75, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6n3l"]
+atlas = ExtResource("2_ykubr")
+region = Rect2(0, 90, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_411pb"]
+atlas = ExtResource("2_ykubr")
+region = Rect2(15, 90, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqi5g"]
+atlas = ExtResource("2_ykubr")
+region = Rect2(30, 90, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bli4f"]
+atlas = ExtResource("2_ykubr")
+region = Rect2(45, 90, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5gbgf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuk03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfama")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5s1sf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emkrw")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6n3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_411pb")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqi5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bli4f")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7ep6"]
+size = Vector2(14, 16)
+
+[node name="Leech" type="CharacterBody2D" node_paths=PackedStringArray("wall_ray", "player_ray")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_nf04y")
+wall_ray = NodePath("WallRay")
+player_ray = NodePath("PlayerRay")
+speed = 15.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_5gbgf")
+animation = &"up"
+frame_progress = 0.474041
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h7ep6")
+
+[node name="WallRay" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="WallRay"]
+position = Vector2(0, -8)
+target_position = Vector2(10, 0)
+
+[node name="RayCast2D2" type="RayCast2D" parent="WallRay"]
+target_position = Vector2(10, 0)
+
+[node name="RayCast2D3" type="RayCast2D" parent="WallRay"]
+position = Vector2(0, 8)
+target_position = Vector2(10, 0)
+
+[node name="PlayerRay" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="PlayerRay"]
+position = Vector2(0, -5)
+target_position = Vector2(300, 0)
+collision_mask = 3
+
+[node name="RayCast2D2" type="RayCast2D" parent="PlayerRay"]
+target_position = Vector2(300, 0)
+collision_mask = 3
+
+[node name="RayCast2D3" type="RayCast2D" parent="PlayerRay"]
+position = Vector2(0, 5)
+target_position = Vector2(300, 0)
+collision_mask = 3

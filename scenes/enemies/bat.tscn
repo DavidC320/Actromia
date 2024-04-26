@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://7l0eqa138gpo"]
+
+[ext_resource type="Script" path="res://scripts/Enemies/bat.gd" id="1_2vbme"]
+[ext_resource type="Texture2D" uid="uid://dy2gbh1jd8v8h" path="res://assets/tilesets/Monsters.png" id="2_iojxj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kttsf"]
+atlas = ExtResource("2_iojxj")
+region = Rect2(15, 15, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alhcy"]
+atlas = ExtResource("2_iojxj")
+region = Rect2(0, 15, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nca66"]
+atlas = ExtResource("2_iojxj")
+region = Rect2(30, 15, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6dayp"]
+animations = [{
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_kttsf")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_alhcy")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_nca66")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8ay3"]
+size = Vector2(14, 16)
+
+[node name="Bat" type="CharacterBody2D" node_paths=PackedStringArray("wall_ray", "player_ray")]
+script = ExtResource("1_2vbme")
+wall_ray = NodePath("WallRay")
+player_ray = NodePath("PlayerRay")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_6dayp")
+autoplay = "default"
+frame_progress = 0.753113
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j8ay3")
+
+[node name="WallRay" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="WallRay"]
+position = Vector2(0, -8)
+target_position = Vector2(10, 0)
+
+[node name="RayCast2D2" type="RayCast2D" parent="WallRay"]
+target_position = Vector2(10, 0)
+
+[node name="RayCast2D3" type="RayCast2D" parent="WallRay"]
+position = Vector2(0, 8)
+target_position = Vector2(10, 0)
+
+[node name="PlayerRay" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="PlayerRay"]
+position = Vector2(0, -5)
+target_position = Vector2(300, 0)
+collision_mask = 3
+
+[node name="RayCast2D2" type="RayCast2D" parent="PlayerRay"]
+target_position = Vector2(300, 0)
+collision_mask = 3
+
+[node name="RayCast2D3" type="RayCast2D" parent="PlayerRay"]
+position = Vector2(0, 5)
+target_position = Vector2(300, 0)
+collision_mask = 3

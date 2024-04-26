@@ -1,0 +1,205 @@
+[gd_scene load_steps=24 format=3 uid="uid://cnnv7dhylsgxu"]
+
+[ext_resource type="PackedScene" uid="uid://dmkw7cf1rthnj" path="res://scenes/Dungeon_rooms/empty_secret.tscn" id="1_cf1su"]
+[ext_resource type="PackedScene" uid="uid://b6neghuhp3wj4" path="res://scenes/Dungeon_rooms/Entrance.tscn" id="1_md5lt"]
+[ext_resource type="PackedScene" uid="uid://c8qjsfwvgr2p6" path="res://scenes/player.tscn" id="2_qqo02"]
+[ext_resource type="PackedScene" uid="uid://b6v4tqc0je8g1" path="res://scenes/Dungeon_rooms/skeleton_hall.tscn" id="2_yo6wv"]
+[ext_resource type="PackedScene" uid="uid://dpgckoly77xma" path="res://scenes/Dungeon_rooms/snake_key.tscn" id="3_ol165"]
+[ext_resource type="Resource" uid="uid://dnk1dsjpg14sr" path="res://resources/Items/Bomb.tres" id="3_q1jr7"]
+[ext_resource type="Resource" uid="uid://7vxjfukqpb06" path="res://resources/Items/Treasure.tres" id="4_h8oy8"]
+[ext_resource type="PackedScene" uid="uid://cb6b8njf57sbv" path="res://scenes/Dungeon_rooms/bat_bomb.tscn" id="4_yyi0g"]
+[ext_resource type="PackedScene" uid="uid://b0remmmvcn6gd" path="res://scenes/Dungeon_rooms/water_devil.tscn" id="5_jjmem"]
+[ext_resource type="PackedScene" uid="uid://cs0iwrcq3cygt" path="res://scenes/Dungeon_rooms/exit.tscn" id="7_hsdl2"]
+[ext_resource type="PackedScene" uid="uid://dtmi75rygvhdx" path="res://scenes/Dungeon_rooms/secret_basement.tscn" id="8_4c1t3"]
+[ext_resource type="PackedScene" uid="uid://dgftbt2buny85" path="res://scenes/long_door.tscn" id="10_7uafp"]
+[ext_resource type="PackedScene" uid="uid://csfxa7gj7y5on" path="res://scenes/short_door.tscn" id="11_nqoc0"]
+[ext_resource type="PackedScene" uid="uid://cvdj4ggysytg8" path="res://scenes/Item.tscn" id="12_5u57j"]
+[ext_resource type="Resource" uid="uid://d0bdho6gpucjc" path="res://resources/Items/key.tres" id="13_dk4md"]
+[ext_resource type="Resource" uid="uid://b0ueyv41b4r3r" path="res://resources/Items/fire_candle.tres" id="13_l4lip"]
+[ext_resource type="PackedScene" uid="uid://pqnm1t82a62f" path="res://scenes/camera.tscn" id="15_l24qn"]
+[ext_resource type="PackedScene" uid="uid://dnlq7rd2c4o33" path="res://scenes/enemies/leech.tscn" id="16_hy36x"]
+[ext_resource type="PackedScene" uid="uid://cdge5ln3luabg" path="res://scenes/stairs.tscn" id="17_infph"]
+[ext_resource type="PackedScene" uid="uid://0ijgmfthyj3x" path="res://scenes/enemies/enemy.tscn" id="19_1hpp2"]
+[ext_resource type="AudioStream" uid="uid://bdc3a8jq4w8ac" path="res://assets/bgm/dungeon002.ogg" id="21_sljjn"]
+[ext_resource type="AudioStream" uid="uid://dgs38qvx181fj" path="res://assets/bgm/Long Away Home.wav" id="22_h1vkg"]
+[ext_resource type="PackedScene" uid="uid://7l0eqa138gpo" path="res://scenes/enemies/bat.tscn" id="23_ellv3"]
+
+[node name="Dungeon" type="Node2D"]
+
+[node name="Dungeon" type="Node2D" parent="."]
+
+[node name="Rooms" type="Node2D" parent="Dungeon"]
+
+[node name="Entrance" parent="Dungeon/Rooms" instance=ExtResource("1_md5lt")]
+
+[node name="SkeletonHall" parent="Dungeon/Rooms" instance=ExtResource("2_yo6wv")]
+position = Vector2(0, -165)
+
+[node name="Snake_key" parent="Dungeon/Rooms" instance=ExtResource("3_ol165")]
+position = Vector2(0, -330)
+
+[node name="BatBomb" parent="Dungeon/Rooms" instance=ExtResource("4_yyi0g")]
+position = Vector2(240, -330)
+
+[node name="WaterDevil" parent="Dungeon/Rooms" instance=ExtResource("5_jjmem")]
+position = Vector2(480, -330)
+
+[node name="EmptySecret" parent="Dungeon/Rooms" instance=ExtResource("1_cf1su")]
+position = Vector2(240, -165)
+
+[node name="Exit" parent="Dungeon/Rooms" instance=ExtResource("7_hsdl2")]
+position = Vector2(480, -495)
+
+[node name="SecretBasement" parent="Dungeon/Rooms" instance=ExtResource("8_4c1t3")]
+position = Vector2(240, 0)
+
+[node name="Items" type="Node2D" parent="Dungeon"]
+
+[node name="StaticBody2D" parent="Dungeon/Items" instance=ExtResource("12_5u57j")]
+position = Vector2(135, -255)
+_item_resource = ExtResource("13_dk4md")
+
+[node name="StaticBody2D2" parent="Dungeon/Items" instance=ExtResource("12_5u57j")]
+position = Vector2(360, -255)
+_item_resource = ExtResource("3_q1jr7")
+
+[node name="StaticBody2D3" parent="Dungeon/Items" instance=ExtResource("12_5u57j")]
+position = Vector2(592.5, -420)
+_item_resource = ExtResource("4_h8oy8")
+
+[node name="StaticBody2D4" parent="Dungeon/Items" instance=ExtResource("12_5u57j")]
+position = Vector2(360, 75)
+_item_resource = ExtResource("13_l4lip")
+
+[node name="Stairs" type="Node2D" parent="Dungeon"]
+
+[node name="Stairs" parent="Dungeon/Stairs" instance=ExtResource("17_infph")]
+position = Vector2(360, -90)
+
+[node name="TeleportMarker" parent="Dungeon/Stairs/Stairs" index="3"]
+position = Vector2(-75, 105)
+
+[node name="Stairs2" parent="Dungeon/Stairs" instance=ExtResource("17_infph")]
+position = Vector2(285, 0)
+
+[node name="Sprite2D" parent="Dungeon/Stairs/Stairs2" index="0"]
+visible = false
+
+[node name="TeleportMarker" parent="Dungeon/Stairs/Stairs2" index="3"]
+position = Vector2(60, -90)
+
+[node name="Enemies" type="Node2D" parent="Dungeon"]
+
+[node name="Enemy" parent="Dungeon/Enemies" instance=ExtResource("19_1hpp2")]
+position = Vector2(89, -127)
+
+[node name="PuppetMage" parent="Dungeon/Enemies" instance=ExtResource("19_1hpp2")]
+position = Vector2(96, -98)
+
+[node name="PuppetMage2" parent="Dungeon/Enemies" instance=ExtResource("19_1hpp2")]
+position = Vector2(82, -53)
+
+[node name="Leech2" parent="Dungeon/Enemies" instance=ExtResource("16_hy36x")]
+position = Vector2(128, -263)
+
+[node name="Leech3" parent="Dungeon/Enemies" instance=ExtResource("16_hy36x")]
+position = Vector2(158, -262)
+
+[node name="Leech4" parent="Dungeon/Enemies" instance=ExtResource("16_hy36x")]
+position = Vector2(202, -278)
+
+[node name="Leech5" parent="Dungeon/Enemies" instance=ExtResource("16_hy36x")]
+position = Vector2(98, -284)
+
+[node name="Leech" parent="Dungeon/Enemies" instance=ExtResource("16_hy36x")]
+position = Vector2(68, -204)
+
+[node name="Player" parent="." instance=ExtResource("2_qqo02")]
+position = Vector2(120, 120)
+
+[node name="Camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_l24qn")]
+player = NodePath("../Player")
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="SecretInside" parent="Doors" node_paths=PackedStringArray("linked_door") instance=ExtResource("10_7uafp")]
+position = Vector2(255, -83)
+rotation = -1.57079
+linked_door = NodePath("../SecretOutside")
+
+[node name="SecretOutside" parent="Doors" instance=ExtResource("10_7uafp")]
+position = Vector2(225, -83)
+rotation = 1.57079
+
+[node name="ShortDoor" parent="Doors" instance=ExtResource("11_nqoc0")]
+position = Vector2(120, 15)
+closed = false
+
+[node name="ShortDoor2" parent="Doors" instance=ExtResource("11_nqoc0")]
+position = Vector2(120, -15)
+rotation = -3.14159
+closed = false
+
+[node name="ShortDoor3" parent="Doors" instance=ExtResource("11_nqoc0")]
+position = Vector2(120, -150)
+closed = false
+
+[node name="ShortDoor4" parent="Doors" instance=ExtResource("11_nqoc0")]
+position = Vector2(120, -180)
+rotation = 3.14159
+closed = false
+
+[node name="LockedDoor" parent="Doors" instance=ExtResource("10_7uafp")]
+position = Vector2(225, -248)
+rotation = 1.57079
+door_type = 0
+
+[node name="LockedDoor2" parent="Doors" node_paths=PackedStringArray("linked_door") instance=ExtResource("10_7uafp")]
+position = Vector2(255, -248)
+rotation = 4.71238
+door_type = 0
+linked_door = NodePath("../LockedDoor")
+
+[node name="ShortDoor5" parent="Doors" instance=ExtResource("11_nqoc0")]
+position = Vector2(360, -150)
+closed = false
+
+[node name="ShortDoor6" parent="Doors" instance=ExtResource("11_nqoc0")]
+position = Vector2(360, -180)
+rotation = -3.14159
+closed = false
+
+[node name="LongDoor" parent="Doors" instance=ExtResource("10_7uafp")]
+position = Vector2(465, -248)
+rotation = 1.57079
+door_type = 0
+closed = false
+
+[node name="LongDoor2" parent="Doors" instance=ExtResource("10_7uafp")]
+position = Vector2(495, -248)
+rotation = -1.57079
+door_type = 0
+closed = false
+
+[node name="ShortDoor7" parent="Doors" instance=ExtResource("11_nqoc0")]
+position = Vector2(600, -345)
+rotation = 3.14159
+closed = false
+
+[node name="ShortDoor8" parent="Doors" instance=ExtResource("11_nqoc0")]
+position = Vector2(600, -315)
+closed = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_sljjn")
+autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_h1vkg")
+autoplay = true
+
+[node name="Bat" parent="." instance=ExtResource("23_ellv3")]
+position = Vector2(401, -282)
+
+[editable path="Dungeon/Stairs/Stairs"]
+[editable path="Dungeon/Stairs/Stairs2"]

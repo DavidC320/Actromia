@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgftbt2buny85"]
+
+[ext_resource type="Texture2D" uid="uid://br0k45v62jmbw" path="res://assets/tilesets/DungeonTiles.png" id="1_8wcl6"]
+[ext_resource type="Script" path="res://scripts/long_door.gd" id="1_brbgc"]
+[ext_resource type="AudioStream" uid="uid://dn1krkmtpjium" path="res://assets/sfx/click(1).wav" id="3_xikg6"]
+[ext_resource type="AudioStream" uid="uid://b5hlgng34g8gf" path="res://assets/sfx/explosion(4).wav" id="4_yies8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k63ih"]
+atlas = ExtResource("1_8wcl6")
+region = Rect2(30, 90, 45, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nqjr"]
+atlas = ExtResource("1_8wcl6")
+region = Rect2(40, 90, 25, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_whg34"]
+size = Vector2(15, 30.9478)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kilfc"]
+size = Vector2(20, 4)
+
+[node name="LongDoor" type="Node2D" node_paths=PackedStringArray("door_collison_shape", "door_area_check", "low_sprite", "high_sprite", "open_audio", "explode_audio")]
+script = ExtResource("1_brbgc")
+door_type = 1
+closed = true
+open_door_sprite = Rect2(30, 0, 45, 30)
+locked_door_sprite = Rect2(30, 30, 45, 30)
+cracked_door_sprite = Rect2(30, 60, 45, 30)
+solid_door_sprite = Rect2(30, 90, 45, 30)
+top_sprite = Rect2(10, 0, 25, 30)
+door_collison_shape = NodePath("Door/CollisionShape2D")
+door_area_check = NodePath("PlayerDetector")
+low_sprite = NodePath("LowSprite")
+high_sprite = NodePath("HighSprite")
+open_audio = NodePath("AudioStreamPlayer")
+explode_audio = NodePath("AudioStreamPlayer2")
+
+[node name="LowSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_k63ih")
+
+[node name="HighSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_2nqjr")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-15, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_whg34")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(15, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_whg34")
+
+[node name="Door" type="StaticBody2D" parent="." groups=["Door"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+position = Vector2(0, -4.75569e-07)
+shape = SubResource("RectangleShape2D_whg34")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+position = Vector2(0, 16)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_kilfc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xikg6")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yies8")

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://dnk1dsjpg14sr"]
+
+[ext_resource type="Script" path="res://scripts/resource/item_resource.gd" id="1_2xw1n"]
+[ext_resource type="Texture2D" uid="uid://cqmkssusnm4nr" path="res://assets/tilesets/Player.png" id="2_1byt6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otfaf"]
+atlas = ExtResource("2_1byt6")
+region = Rect2(75, 45, 15, 15)
+
+[resource]
+script = ExtResource("1_2xw1n")
+item_name = "Bomb"
+item_type = "item"
+item = 1
+amount = 1
+unlock_item = 0
+sprite = SubResource("AtlasTexture_otfaf")

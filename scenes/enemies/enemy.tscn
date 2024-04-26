@@ -1,0 +1,121 @@
+[gd_scene load_steps=11 format=3 uid="uid://0ijgmfthyj3x"]
+
+[ext_resource type="Texture2D" uid="uid://dy2gbh1jd8v8h" path="res://assets/tilesets/Monsters.png" id="1_aw250"]
+[ext_resource type="Script" path="res://scripts/Enemies/enemy.gd" id="1_yncfj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw34q"]
+atlas = ExtResource("1_aw250")
+region = Rect2(0, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1y5ym"]
+atlas = ExtResource("1_aw250")
+region = Rect2(15, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx88w"]
+atlas = ExtResource("1_aw250")
+region = Rect2(30, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7crh2"]
+atlas = ExtResource("1_aw250")
+region = Rect2(45, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s0ax"]
+atlas = ExtResource("1_aw250")
+region = Rect2(75, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4275k"]
+atlas = ExtResource("1_aw250")
+region = Rect2(60, 0, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hj1mf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw34q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1y5ym")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx88w")
+}],
+"loop": true,
+"name": &"down laser",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7crh2")
+}],
+"loop": true,
+"name": &"left laser",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0s0ax")
+}],
+"loop": true,
+"name": &"right laser",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4275k")
+}],
+"loop": true,
+"name": &"up laser",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xux1u"]
+size = Vector2(14, 16)
+
+[node name="PuppetMage" type="CharacterBody2D" node_paths=PackedStringArray("wall_ray", "player_ray")]
+collision_layer = 4
+script = ExtResource("1_yncfj")
+wall_ray = NodePath("WallRay")
+player_ray = NodePath("PlayerRay")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_hj1mf")
+animation = &"up laser"
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xux1u")
+
+[node name="WallRay" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="WallRay"]
+position = Vector2(0, -8)
+target_position = Vector2(10, 0)
+
+[node name="RayCast2D2" type="RayCast2D" parent="WallRay"]
+target_position = Vector2(10, 0)
+
+[node name="RayCast2D3" type="RayCast2D" parent="WallRay"]
+position = Vector2(0, 8)
+target_position = Vector2(10, 0)
+
+[node name="PlayerRay" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="PlayerRay"]
+position = Vector2(0, -5)
+target_position = Vector2(300, 0)
+collision_mask = 3
+
+[node name="RayCast2D2" type="RayCast2D" parent="PlayerRay"]
+target_position = Vector2(300, 0)
+collision_mask = 3
+
+[node name="RayCast2D3" type="RayCast2D" parent="PlayerRay"]
+position = Vector2(0, 5)
+target_position = Vector2(300, 0)
+collision_mask = 3
