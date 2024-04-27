@@ -10,7 +10,7 @@ region = Rect2(90, 30, 15, 15)
 [resource]
 script = ExtResource("1_2i1wu")
 item_name = "Treasure"
-item_type = "item"
+item_type = "treasure"
 item = 0
 amount = 1
 unlock_item = 0

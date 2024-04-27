@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://chi045sspnrkb"]
+
+[ext_resource type="Script" path="res://scripts/Menues/win.gd" id="1_bu0rk"]
+[ext_resource type="Texture2D" uid="uid://cqmkssusnm4nr" path="res://assets/tilesets/Player.png" id="1_xowwp"]
+[ext_resource type="AudioStream" uid="uid://dql168d07h3fw" path="res://assets/bgm/Win Jingle.wav" id="2_uavf4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgbmv"]
+atlas = ExtResource("1_xowwp")
+region = Rect2(90, 30, 15, 15)
+
+[node name="Win" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bu0rk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.180392, 0.180392, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(7, 7)
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer"]
+texture = SubResource("AtlasTexture_rgbmv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 41
+text = "The 
+Ruby Encrested Saphire
+Obtained!"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/margin_bottom = 120
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="play" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play Again"
+
+[node name="back" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back to Menu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_uavf4")
+autoplay = true

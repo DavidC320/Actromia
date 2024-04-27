@@ -5,11 +5,11 @@
 [ext_resource type="AudioStream" uid="uid://dn1krkmtpjium" path="res://assets/sfx/click(1).wav" id="3_c6f0m"]
 [ext_resource type="AudioStream" uid="uid://b5hlgng34g8gf" path="res://assets/sfx/explosion(4).wav" id="4_goba1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o41yd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ho8t3"]
 atlas = ExtResource("2_jb3k0")
 region = Rect2(0, 30, 30, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kjhs7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oh3e5"]
 atlas = ExtResource("2_jb3k0")
 region = Rect2(0, 30, 30, 30)
 
@@ -25,7 +25,7 @@ size = Vector2(20, 30.9478)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kilfc"]
 size = Vector2(20, 4)
 
-[node name="ShortDoor" type="Node2D" node_paths=PackedStringArray("door_collison_shape", "door_area_check", "low_sprite", "high_sprite", "open_audio", "explode_audio")]
+[node name="ShortDoor" type="Node2D" node_paths=PackedStringArray("door_collison_shape", "door_area_check", "low_sprite", "high_sprite", "open_audio", "explode_audio") groups=["Door"]]
 script = ExtResource("1_d85q1")
 closed = true
 open_door_sprite = Rect2(0, 0, 30, 30)
@@ -42,11 +42,11 @@ explode_audio = NodePath("AudioStreamPlayer2")
 
 [node name="LowSprite" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = SubResource("AtlasTexture_o41yd")
+texture = SubResource("AtlasTexture_ho8t3")
 
 [node name="HighSprite" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = SubResource("AtlasTexture_kjhs7")
+texture = SubResource("AtlasTexture_oh3e5")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-15, 0)
@@ -64,6 +64,7 @@ shape = SubResource("RectangleShape2D_jws2g")
 
 [node name="Door" type="StaticBody2D" parent="." groups=["Door"]]
 collision_layer = 257
+collision_mask = 129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2(0, -4.75569e-07)

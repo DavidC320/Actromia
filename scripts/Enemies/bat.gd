@@ -13,6 +13,7 @@ func get_random_target_position():
 	direction  = direcotry_of_possible_directions.get(random_direction)
 	wall_ray.look_at(global_position + direction)
 	player_ray.look_at(global_position + direction)
+	hit_player_area.look_at(global_position + direction)
 	target_position = global_position + (direction * 15)
 
 func _physics_process(delta):

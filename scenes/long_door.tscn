@@ -1,25 +1,31 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgftbt2buny85"]
+[gd_scene load_steps=11 format=3 uid="uid://dgftbt2buny85"]
 
 [ext_resource type="Texture2D" uid="uid://br0k45v62jmbw" path="res://assets/tilesets/DungeonTiles.png" id="1_8wcl6"]
 [ext_resource type="Script" path="res://scripts/long_door.gd" id="1_brbgc"]
 [ext_resource type="AudioStream" uid="uid://dn1krkmtpjium" path="res://assets/sfx/click(1).wav" id="3_xikg6"]
 [ext_resource type="AudioStream" uid="uid://b5hlgng34g8gf" path="res://assets/sfx/explosion(4).wav" id="4_yies8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k63ih"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hofjn"]
 atlas = ExtResource("1_8wcl6")
 region = Rect2(30, 90, 45, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2nqjr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdl66"]
 atlas = ExtResource("1_8wcl6")
 region = Rect2(40, 90, 25, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_whg34"]
-size = Vector2(15, 30.9478)
+size = Vector2(15.5, 30.9478)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mu0hm"]
+size = Vector2(15.5, 30.9478)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2044x"]
+size = Vector2(14, 30.9478)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kilfc"]
 size = Vector2(20, 4)
 
-[node name="LongDoor" type="Node2D" node_paths=PackedStringArray("door_collison_shape", "door_area_check", "low_sprite", "high_sprite", "open_audio", "explode_audio")]
+[node name="LongDoor" type="Node2D" node_paths=PackedStringArray("door_collison_shape", "door_area_check", "low_sprite", "high_sprite", "open_audio", "explode_audio") groups=["Door"]]
 script = ExtResource("1_brbgc")
 door_type = 1
 closed = true
@@ -37,29 +43,32 @@ explode_audio = NodePath("AudioStreamPlayer2")
 
 [node name="LowSprite" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = SubResource("AtlasTexture_k63ih")
+texture = SubResource("AtlasTexture_hofjn")
 
 [node name="HighSprite" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = SubResource("AtlasTexture_2nqjr")
+texture = SubResource("AtlasTexture_pdl66")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-15, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.25, 0)
 shape = SubResource("RectangleShape2D_whg34")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(15, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-shape = SubResource("RectangleShape2D_whg34")
+position = Vector2(-0.25, 0)
+shape = SubResource("RectangleShape2D_mu0hm")
 
 [node name="Door" type="StaticBody2D" parent="." groups=["Door"]]
+collision_layer = 129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2(0, -4.75569e-07)
-shape = SubResource("RectangleShape2D_whg34")
+shape = SubResource("RectangleShape2D_2044x")
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 position = Vector2(0, 16)

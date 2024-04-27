@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.0
+
+* Added new music
+* nom nom's now spawn three glistening nib nibs
+* Added menues
+* Added sound effects
+* Added player sprites
+
+## 2.1
+
+* Player can now be hit by enemies
+* the long and short doors hit boxes have been changed
+* nib nib, glimering nib nib, and nom noms can pass over walls
+
 ## 2.0
 
 * Added enemies

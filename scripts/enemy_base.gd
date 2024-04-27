@@ -5,11 +5,12 @@ class_name EnemyBase
 @export var minimume_travel_distance := 1
 @export var maximume_travel_distance := 3
 @export_flags_2d_physics var projectile_layer = 0b00000000_00000000_00000000_00010000
-@export_flags_2d_physics var projectile_check = 0b00000000_00000000_00000000_00000011
+@export_flags_2d_physics var projectile_check = 0b00000000_00000000_00000001_00000011
 @export var recharge_time := 1.0
 @export_category("Nodes")
 @export var wall_ray:Node2D
 @export var player_ray:Node2D
+@export var hit_player_area:Area2D
 var recharge:Timer
 
 var target_position:Vector2
@@ -35,18 +36,23 @@ func get_random_target_position():
 	direction  = direcotry_of_possible_directions.get(random_direction)
 	wall_ray.look_at(global_position + direction)
 	player_ray.look_at(global_position + direction)
+	hit_player_area.look_at(global_position + direction)
 	target_position = global_position + (direction * 15)
+
 
 func _process(delta):
 	play_animations()
 
+
 func _ready():
-	get_random_target_position()
 	var rechage_timer = Timer.new()
 	rechage_timer.wait_time = recharge_time
 	add_child(rechage_timer)
 	recharge = rechage_timer
 	rechage_timer.timeout.connect(recharge_timeout)
+	
+	hit_player_area.body_entered.connect(hit_player)
+	get_random_target_position()
 
 
 func get_collison_in_list(list_of_rays, group_check = null):
@@ -87,3 +93,6 @@ func check_rays():
 
 func recharge_timeout():
 	recharging = false
+
+func hit_player(_node):
+	_node.change_health_actor(-1)

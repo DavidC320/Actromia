@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Actromia"
-run/main_scene="res://scenes/dungeon_room.tscn"
+run/main_scene="res://scenes/Menues/start.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -62,12 +62,13 @@ fire={
 
 [layer_names]
 
-2d_physics/layer_1="World"
+2d_physics/layer_1="errian"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Player Projectile"
 2d_physics/layer_5="Enemy Projectile"
 2d_physics/layer_6="Pickup"
-2d_physics/layer_7="NoneWalls"
-2d_physics/layer_8="wall"
-2d_physics/layer_9="enemy boundery"
+2d_physics/layer_7="movementBlocker"
+2d_physics/layer_8="enemy boundery"
+2d_physics/layer_9="shield"
+2d_physics/layer_10="ladder"

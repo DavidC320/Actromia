@@ -8,7 +8,7 @@ func explode():
 	for node in nodes:
 		if node is TileMap:
 			continue
-		if node.collision_layer == 1 and "Door" in node.get_groups():
+		if "Door" in node.get_groups():
 			node.get_parent().bomb_open()
 		elif node.collision_layer == 1:
 			continue

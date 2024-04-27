@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cnnv7dhylsgxu"]
+[gd_scene load_steps=25 format=3 uid="uid://cnnv7dhylsgxu"]
 
 [ext_resource type="PackedScene" uid="uid://dmkw7cf1rthnj" path="res://scenes/Dungeon_rooms/empty_secret.tscn" id="1_cf1su"]
 [ext_resource type="PackedScene" uid="uid://b6neghuhp3wj4" path="res://scenes/Dungeon_rooms/Entrance.tscn" id="1_md5lt"]
@@ -19,10 +19,11 @@
 [ext_resource type="PackedScene" uid="uid://pqnm1t82a62f" path="res://scenes/camera.tscn" id="15_l24qn"]
 [ext_resource type="PackedScene" uid="uid://dnlq7rd2c4o33" path="res://scenes/enemies/leech.tscn" id="16_hy36x"]
 [ext_resource type="PackedScene" uid="uid://cdge5ln3luabg" path="res://scenes/stairs.tscn" id="17_infph"]
+[ext_resource type="PackedScene" uid="uid://cngdbtp4twswm" path="res://scenes/enemies/mama_bat.tscn" id="18_4ktvs"]
 [ext_resource type="PackedScene" uid="uid://0ijgmfthyj3x" path="res://scenes/enemies/enemy.tscn" id="19_1hpp2"]
-[ext_resource type="AudioStream" uid="uid://bdc3a8jq4w8ac" path="res://assets/bgm/dungeon002.ogg" id="21_sljjn"]
-[ext_resource type="AudioStream" uid="uid://dgs38qvx181fj" path="res://assets/bgm/Long Away Home.wav" id="22_h1vkg"]
+[ext_resource type="PackedScene" uid="uid://qbguw76s7s72" path="res://scenes/Interactive/Moveable.tscn" id="19_8yntg"]
 [ext_resource type="PackedScene" uid="uid://7l0eqa138gpo" path="res://scenes/enemies/bat.tscn" id="23_ellv3"]
+[ext_resource type="AudioStream" uid="uid://dhnxbcydbrauq" path="res://assets/bgm/Map (basic version).wav" id="23_o1ric"]
 
 [node name="Dungeon" type="Node2D"]
 
@@ -81,6 +82,7 @@ position = Vector2(-75, 105)
 
 [node name="Stairs2" parent="Dungeon/Stairs" instance=ExtResource("17_infph")]
 position = Vector2(285, 0)
+turn_off_topdown_controls = false
 
 [node name="Sprite2D" parent="Dungeon/Stairs/Stairs2" index="0"]
 visible = false
@@ -88,7 +90,7 @@ visible = false
 [node name="TeleportMarker" parent="Dungeon/Stairs/Stairs2" index="3"]
 position = Vector2(60, -90)
 
-[node name="Enemies" type="Node2D" parent="Dungeon"]
+[node name="Enemies" type="Node2D" parent="Dungeon" groups=["enemies"]]
 
 [node name="Enemy" parent="Dungeon/Enemies" instance=ExtResource("19_1hpp2")]
 position = Vector2(89, -127)
@@ -114,8 +116,47 @@ position = Vector2(98, -284)
 [node name="Leech" parent="Dungeon/Enemies" instance=ExtResource("16_hy36x")]
 position = Vector2(68, -204)
 
+[node name="Bat" parent="Dungeon/Enemies" instance=ExtResource("23_ellv3")]
+position = Vector2(397, -292)
+
+[node name="Bat2" parent="Dungeon/Enemies" instance=ExtResource("23_ellv3")]
+position = Vector2(397, -203)
+
+[node name="Bat3" parent="Dungeon/Enemies" instance=ExtResource("23_ellv3")]
+position = Vector2(292, -278)
+
+[node name="Bat4" parent="Dungeon/Enemies" instance=ExtResource("23_ellv3")]
+position = Vector2(292, -216)
+
+[node name="Bat5" parent="Dungeon/Enemies" instance=ExtResource("23_ellv3")]
+position = Vector2(277, -248)
+
+[node name="MamaBat" parent="Dungeon/Enemies" instance=ExtResource("18_4ktvs")]
+position = Vector2(667, -278)
+
+[node name="MamaBat2" parent="Dungeon/Enemies" instance=ExtResource("18_4ktvs")]
+position = Vector2(668, -217)
+
+[node name="MamaBat3" parent="Dungeon/Enemies" instance=ExtResource("18_4ktvs")]
+position = Vector2(638, -263)
+
+[node name="MamaBat4" parent="Dungeon/Enemies" instance=ExtResource("18_4ktvs")]
+position = Vector2(638, -232)
+
+[node name="MamaBat5" parent="Dungeon/Enemies" instance=ExtResource("18_4ktvs")]
+position = Vector2(607, -232)
+
+[node name="Bat6" parent="Dungeon/Enemies" instance=ExtResource("23_ellv3")]
+position = Vector2(322, 68)
+
+[node name="Bat7" parent="Dungeon/Enemies" instance=ExtResource("23_ellv3")]
+position = Vector2(292, 82)
+
+[node name="Moveable" parent="Dungeon" instance=ExtResource("19_8yntg")]
+position = Vector2(337.5, -82.5)
+
 [node name="Player" parent="." instance=ExtResource("2_qqo02")]
-position = Vector2(120, 120)
+position = Vector2(120, 126)
 
 [node name="Camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_l24qn")]
 player = NodePath("../Player")
@@ -190,16 +231,26 @@ closed = false
 position = Vector2(600, -315)
 closed = false
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("21_sljjn")
-autoplay = true
-
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("22_h1vkg")
+stream = ExtResource("23_o1ric")
 autoplay = true
 
 [node name="Bat" parent="." instance=ExtResource("23_ellv3")]
-position = Vector2(401, -282)
+position = Vector2(396, 98)
+
+[node name="Bat2" parent="." instance=ExtResource("23_ellv3")]
+position = Vector2(427, 113)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [editable path="Dungeon/Stairs/Stairs"]
 [editable path="Dungeon/Stairs/Stairs2"]

@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://baf80ydtqnnn4"]
+
+[ext_resource type="Script" path="res://scripts/Menues/fail.gd" id="1_ndo56"]
+[ext_resource type="Texture2D" uid="uid://cqmkssusnm4nr" path="res://assets/tilesets/Player.png" id="1_xowwp"]
+[ext_resource type="AudioStream" uid="uid://0osahruvmvld" path="res://assets/bgm/Warp Jingle.wav" id="2_yxsws"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6o2o"]
+atlas = ExtResource("1_xowwp")
+region = Rect2(75, 30, 15, 15)
+
+[node name="Fail" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ndo56")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.054902, 0.0352941, 0.00784314, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(7, 7)
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer"]
+texture = SubResource("AtlasTexture_v6o2o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 86
+text = "You Died"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/margin_bottom = 120
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="play" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Try Again"
+
+[node name="Back" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back to menu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_yxsws")
+autoplay = true

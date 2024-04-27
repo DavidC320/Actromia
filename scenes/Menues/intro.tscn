@@ -1,0 +1,122 @@
+[gd_scene load_steps=8 format=3 uid="uid://1j2qrpjs0ahm"]
+
+[ext_resource type="Script" path="res://scripts/Menues/intro.gd" id="1_7wt5c"]
+[ext_resource type="AudioStream" uid="uid://b2qumx8fjdgcy" path="res://assets/bgm/Mars.wav" id="1_i6is1"]
+[ext_resource type="Texture2D" uid="uid://cqmkssusnm4nr" path="res://assets/tilesets/Player.png" id="2_t8gvc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38rat"]
+atlas = ExtResource("2_t8gvc")
+region = Rect2(15, 30, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp82p"]
+atlas = ExtResource("2_t8gvc")
+region = Rect2(0, 30, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcdvk"]
+atlas = ExtResource("2_t8gvc")
+region = Rect2(30, 30, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_icss0"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_38rat")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_pp82p")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_bcdvk")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_pp82p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7wt5c")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.156863, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 86
+text = "Intro"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "You hear of a legendary object hidden within the confines of a dungeon.
+Such an item that it was locked within the walls of stone, to never be
+touched by another mortal again.
+By itself it's worth a fortune, but once assembled with the other pieces
+of the forgotten king's opulent armour,
+it is said to bring immense power."
+horizontal_alignment = 1
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_i6is1")
+autoplay = true
+stream_paused = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -155.0
+offset_bottom = -155.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer"]
+texture_filter = 1
+position = Vector2(0, 13)
+scale = Vector2(7, 7)
+sprite_frames = SubResource("SpriteFrames_icss0")
+autoplay = "default"
+frame_progress = 0.00971939

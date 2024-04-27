@@ -3,7 +3,7 @@ extends Resource
 class_name ItemResource
 
 @export var item_name:String
-@export_enum("item", "unlock") var item_type = "item":
+@export_enum("item", "unlock", "treasure") var item_type = "item":
 	set(value):
 		item_type = value
 		notify_property_list_changed()

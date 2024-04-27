@@ -1,0 +1,102 @@
+[gd_scene load_steps=10 format=3 uid="uid://c56lbv4txyxy"]
+
+[ext_resource type="Script" path="res://scripts/Enemies/bat.gd" id="1_y5asg"]
+[ext_resource type="Texture2D" uid="uid://dy2gbh1jd8v8h" path="res://assets/tilesets/Monsters.png" id="2_0plpg"]
+[ext_resource type="AudioStream" uid="uid://b3amstxlf877r" path="res://assets/sfx/hitHurt(7).wav" id="3_ivdno"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71aol"]
+atlas = ExtResource("2_0plpg")
+region = Rect2(15, 30, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kx2d"]
+atlas = ExtResource("2_0plpg")
+region = Rect2(0, 30, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5rns"]
+atlas = ExtResource("2_0plpg")
+region = Rect2(30, 30, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c4ayq"]
+animations = [{
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_71aol")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_4kx2d")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_h5rns")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8ay3"]
+size = Vector2(14, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_231ra"]
+size = Vector2(4, 16)
+
+[node name="Bat" type="CharacterBody2D" node_paths=PackedStringArray("wall_ray", "player_ray", "hit_player_area", "hurt_sound_effect")]
+collision_layer = 4
+collision_mask = 128
+script = ExtResource("1_y5asg")
+wall_ray = NodePath("WallRay")
+player_ray = NodePath("PlayerRay")
+hit_player_area = NodePath("HitPlayer")
+speed = 30.0
+hurt_sound_effect = NodePath("AudioStreamPlayer")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_c4ayq")
+autoplay = "default"
+frame_progress = 0.188821
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j8ay3")
+
+[node name="WallRay" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="WallRay"]
+position = Vector2(0, -8)
+target_position = Vector2(10, 0)
+collision_mask = 128
+
+[node name="RayCast2D2" type="RayCast2D" parent="WallRay"]
+target_position = Vector2(10, 0)
+collision_mask = 128
+
+[node name="RayCast2D3" type="RayCast2D" parent="WallRay"]
+position = Vector2(0, 8)
+target_position = Vector2(10, 0)
+collision_mask = 128
+
+[node name="PlayerRay" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="PlayerRay"]
+position = Vector2(0, -5)
+target_position = Vector2(300, 0)
+collision_mask = 131
+
+[node name="RayCast2D2" type="RayCast2D" parent="PlayerRay"]
+target_position = Vector2(300, 0)
+collision_mask = 131
+
+[node name="RayCast2D3" type="RayCast2D" parent="PlayerRay"]
+position = Vector2(0, 5)
+target_position = Vector2(300, 0)
+collision_mask = 131
+
+[node name="HitPlayer" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitPlayer"]
+position = Vector2(9, 0)
+shape = SubResource("RectangleShape2D_231ra")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ivdno")
