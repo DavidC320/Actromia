@@ -6,14 +6,10 @@ class_name Bomb
 func explode():
 	var nodes = area_2d_2.get_overlapping_bodies()
 	for node in nodes:
-		if node is TileMap:
-			continue
+		if node is Actor:
+			node.change_health_actor(-damage)
 		if "Door" in node.get_groups():
 			node.get_parent().bomb_open()
-		elif node.collision_layer == 1:
-			continue
-		else:
-			node.health -= damage
 
 
 func _on_destroyed():

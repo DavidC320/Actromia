@@ -237,7 +237,7 @@ animations = [{
 size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tqthv"]
-size = Vector2(2, 18)
+size = Vector2(2, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_udgb4"]
 atlas = ExtResource("3_trlfd")
@@ -287,7 +287,7 @@ collision_layer = 256
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(12, 0)
+position = Vector2(7, 0)
 shape = SubResource("RectangleShape2D_tqthv")
 
 [node name="Invencible" type="Timer" parent="."]

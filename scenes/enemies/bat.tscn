@@ -37,7 +37,7 @@ animations = [{
 size = Vector2(14, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_231ra"]
-size = Vector2(4, 16)
+size = Vector2(4, 8)
 
 [node name="Bat" type="CharacterBody2D" node_paths=PackedStringArray("wall_ray", "player_ray", "hit_player_area", "hurt_sound_effect")]
 collision_layer = 4
@@ -95,7 +95,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitPlayer"]
-position = Vector2(9, 0)
+position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_231ra")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

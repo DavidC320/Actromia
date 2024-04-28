@@ -5,11 +5,11 @@
 [ext_resource type="AudioStream" uid="uid://dn1krkmtpjium" path="res://assets/sfx/click(1).wav" id="3_c6f0m"]
 [ext_resource type="AudioStream" uid="uid://b5hlgng34g8gf" path="res://assets/sfx/explosion(4).wav" id="4_goba1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ho8t3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_klkx4"]
 atlas = ExtResource("2_jb3k0")
 region = Rect2(0, 30, 30, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oh3e5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lb2tq"]
 atlas = ExtResource("2_jb3k0")
 region = Rect2(0, 30, 30, 30)
 
@@ -42,11 +42,11 @@ explode_audio = NodePath("AudioStreamPlayer2")
 
 [node name="LowSprite" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = SubResource("AtlasTexture_ho8t3")
+texture = SubResource("AtlasTexture_klkx4")
 
 [node name="HighSprite" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = SubResource("AtlasTexture_oh3e5")
+texture = SubResource("AtlasTexture_lb2tq")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-15, 0)

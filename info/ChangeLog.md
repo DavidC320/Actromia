@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.1
+
+* collison shape changes for the player, doors, and enemies
+* The bomb will now only attack anything in the actor class or anything with the group tag door.
+
 ## 3.0
 
 * Added new music
